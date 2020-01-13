@@ -20,18 +20,36 @@ let cards = [
         cardImage: "images/king-of-diamonds.png"
     }
 ];
-        
-cardsInPlay = [];
+      
+
+shuffle(cards);
+
+function shuffle(array) {
+    var m = array.length, t, i;
+  
+    // While there remain elements to shuffle…
+    while (m) {
+      // Pick a remaining element…
+      i = Math.floor(Math.random() * m--);
+      // And swap it with the current element.
+      t = array[m];
+      array[m] = array[i];
+      array[i] = t;
+    }
+  
+    return array;
+  }
+  cardsInPlay = [];
 
 function checkForMatch(){
     
 
     if(cardsInPlay.rank === cardsInPlay.rank){
-        console.log("You found a match!");
         alert("Winner!");
+        console.log("You found a match!");
     } else {
-        console.log("Sorry, try again.");
         alert("Sorry, try again");
+        console.log("Sorry, try again.");
     }
 };
 
@@ -41,10 +59,10 @@ function flipCard(){
     cardsInPlay.push(cards[cardId].rank);
 
     console.log('User flipped ' + cards[cardId].rank);
-    console.log(cards[cardId].cardImage);
-    console.log(cards[cardId].suit);
-    if (cardsInPlay.length === 2){ 
-    checkForMatch();
+    // console.log(cards[cardId].cardImage);
+    // console.log(cards[cardId].suit);
+    if (cardsInPlay.length % 2 === 0 ){ 
+        checkForMatch();
     }
 };
 

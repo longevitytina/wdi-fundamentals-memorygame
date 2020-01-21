@@ -122,3 +122,12 @@ footer {
   color: #F15B31;
   font-weight: bold;
 }
+
+.scorePanel{
+  background-color: #F15B31;
+  color: white;
+  font-size: 45px;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}

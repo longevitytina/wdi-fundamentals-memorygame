@@ -20,8 +20,10 @@ let cards = [
         cardImage: "images/king-of-diamonds.png"
     }
 ];
-      
+cardsInPlay = [];
+// var score;
 
+var cardBack = 'images/back.png'; 
 shuffle(cards);
 
 function shuffle(array) {
@@ -39,37 +41,37 @@ function shuffle(array) {
   
     return array;
   }
-  cardsInPlay = [];
+
 
 function checkForMatch(){
-    
 
-    if(cardsInPlay.rank === cardsInPlay.rank){
-        alert("Winner!");
+    if(cardsInPlay[cardsInPlay.length-1] === cardsInPlay[cardsInPlay.length-2]){
+        // score += 1;
+        // document.querySelector('#scorePanel').style.display = 'block';
         console.log("You found a match!");
     } else {
-        alert("Sorry, try again");
-        console.log("Sorry, try again.");
+        console.log("no match");
     }
 };
 
 function flipCard(){
     var cardId = this.getAttribute('data-id');
-    this.setAttribute('src', cards[cardId].cardImage);
-    cardsInPlay.push(cards[cardId].rank);
-
-    console.log('User flipped ' + cards[cardId].rank);
-    // console.log(cards[cardId].cardImage);
-    // console.log(cards[cardId].suit);
-    if (cardsInPlay.length % 2 === 0 ){ 
-        checkForMatch();
+    if (this.getAttribute('src') === cardBack){
+        this.setAttribute('src', cards[cardId].cardImage);
+        cardsInPlay.push(cards[cardId].rank);
+        console.log('User flipped ' + cards[cardId].rank);
+        console.log(cards[cardId].cardImage);
+        console.log(cards[cardId].suit);
+        if (cardsInPlay.length % 2 === 0 ){ 
+            checkForMatch();
+        }
     }
 };
 
 function createBoard(){
     for(let i = 0; i < cards.length; i++){
         var cardElement = document.createElement('img');
-        cardElement.setAttribute('src', 'images/back.png');
+        cardElement.setAttribute('src', cardBack);
         cardElement.setAttribute('data-id', i);
         document.getElementById('game-board').appendChild(cardElement);
         cardElement.addEventListener('click', flipCard)
@@ -79,3 +81,12 @@ function createBoard(){
 
 
 createBoard();
+
+//when cards are matched, get 1 point accumlated to score panel
+//player clicks second card, if matched get 1 point
+//in checkForMatch() instead of alert(), add 1 point onto score
+//display result..
+//empty variable to store score.
+
+//if card has been clicked previously, then do not flip card
+//if card is not flipped, turn over.

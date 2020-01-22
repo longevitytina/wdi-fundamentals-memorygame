@@ -21,7 +21,7 @@ let cards = [
     }
 ];
 cardsInPlay = [];
-// var score;
+var score = 0;
 
 var cardBack = 'images/back.png'; 
 shuffle(cards);
@@ -46,7 +46,7 @@ function shuffle(array) {
 function checkForMatch(){
 
     if(cardsInPlay[cardsInPlay.length-1] === cardsInPlay[cardsInPlay.length-2]){
-        // score += 1;
+        score += 1;
         // document.querySelector('#scorePanel').style.display = 'block';
         console.log("You found a match!");
     } else {

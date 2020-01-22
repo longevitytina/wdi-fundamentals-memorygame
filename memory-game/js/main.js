@@ -18,10 +18,23 @@ let cards = [
         rank: "king",
         suit: "diamonds",
         cardImage: "images/king-of-diamonds.png"
+    },
+    {
+        rank: "jack",
+        suit: "diamonds",
+        cardImage: "images/jack-of-diamonds.png"
+    },
+    {
+        rank: "jack",
+        suit: "hearts",
+        cardImage: "images/jack-of-hearts.png"
     }
+
+
 ];
 cardsInPlay = [];
 var score = 0;
+var score_div =  document.getElementById("scorePanel");
 
 var cardBack = 'images/back.png'; 
 shuffle(cards);
@@ -46,13 +59,17 @@ function shuffle(array) {
 function checkForMatch(){
 
     if(cardsInPlay[cardsInPlay.length-1] === cardsInPlay[cardsInPlay.length-2]){
-        score += 1;
-        // document.querySelector('#scorePanel').style.display = 'block';
+        incrementScore();
         console.log("You found a match!");
     } else {
+        
         console.log("no match");
     }
 };
+function incrementScore(){
+    score += 1;
+    score_div.innerHTML = score;
+}
 
 function flipCard(){
     var cardId = this.getAttribute('data-id');

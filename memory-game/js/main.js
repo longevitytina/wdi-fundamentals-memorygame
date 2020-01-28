@@ -57,12 +57,14 @@ function shuffle(array) {
 
 
 function checkForMatch(){
+    var lastSelected = cardsInPlay[cardsInPlay.length-1];
+    var penultimate = cardsInPlay[cardsInPlay.length-2];
 
-    if(cardsInPlay[cardsInPlay.length-1] === cardsInPlay[cardsInPlay.length-2]){
+    if(cards[lastSelected].rank === cards[penultimate].rank){
         incrementScore();
         console.log("You found a match!");
     } else {
-        
+
         console.log("no match");
     }
 };
@@ -75,7 +77,7 @@ function flipCard(){
     var cardId = this.getAttribute('data-id');
     if (this.getAttribute('src') === cardBack){
         this.setAttribute('src', cards[cardId].cardImage);
-        cardsInPlay.push(cards[cardId].rank);
+        cardsInPlay.push(cardId);
         console.log('User flipped ' + cards[cardId].rank);
         console.log(cards[cardId].cardImage);
         console.log(cards[cardId].suit);

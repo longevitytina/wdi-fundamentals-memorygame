@@ -60,11 +60,15 @@ function checkForMatch(){
     var lastSelected = cardsInPlay[cardsInPlay.length-1];
     var penultimate = cardsInPlay[cardsInPlay.length-2];
 
+
     if(cards[lastSelected].rank === cards[penultimate].rank){
         incrementScore();
         console.log("You found a match!");
     } else {
-
+        var lastCard = document.querySelector(`[data-id="${lastSelected}"]`)
+        var penultimateCard = document.querySelector(`[data-id="${penultimate}"]`)
+        lastCard.setAttribute('src', cardBack);
+        penultimateCard.setAttribute('src', cardBack);
         console.log("no match");
     }
 };

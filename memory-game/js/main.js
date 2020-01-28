@@ -28,7 +28,29 @@ let cards = [
         rank: "jack",
         suit: "hearts",
         cardImage: "images/jack-of-hearts.png"
+    },
+    {
+        rank: "ace",
+        suit: "hearts",
+        cardImage: ""
+    },
+    {
+        rank: "ace",
+        suit: "diamond",
+        cardImage: "images/ace-diamonds.png"
+    },
+    {
+        rank: "ace",
+        suit: "clubs",
+        cardImage: "images/ace-clubs.png"
+    },
+    {
+        rank: "ace",
+        suit: "spades",
+        cardImage: "images/ace-spades.png"
     }
+
+
 
 
 ];
@@ -86,7 +108,7 @@ function flipCard(){
         console.log(cards[cardId].cardImage);
         console.log(cards[cardId].suit);
         if (cardsInPlay.length % 2 === 0 ){ 
-            checkForMatch();
+            setTimeout(checkForMatch, 500);
         }
     }
 };
@@ -113,3 +135,8 @@ createBoard();
 
 //if card has been clicked previously, then do not flip card
 //if card is not flipped, turn over.
+//card is not being flipped over correctly: lag in the second card 
+//add multiple players
+//animations for cards turning over
+//timer
+//attempts score

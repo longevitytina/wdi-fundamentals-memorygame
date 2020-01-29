@@ -123,11 +123,34 @@ footer {
   font-weight: bold;
 }
 
-.scorePanel{
-  background-color: #F15B31;
+.score-board{
+    margin: 20px auto;
+    border: 3px solid rgb(48, 4, 4);
+    border-radius: 4px;
+    text-align: center;
+    padding: 15px 20px;
+    width:  200px;
+    color: rgb(49, 4, 4);
+    font-size: 40px;
+    position: top;
+}
+
+.badge{
+  background: red;
   color: white;
-  font-size: 45px;
-  margin: 0;
-  font-weight: 400;
-  letter-spacing: 0.05em;
+  font-size: 14px;
+  font-family: 'Asap', sans-serif;
+  text-align: center;
+}
+
+#player-1-label {
+  display: block;
+  float: left;
+  color: #0D2C40;
+}
+
+#player-2-label {
+  display: block;
+  float: right;
+  color: #0D2C40;
 }

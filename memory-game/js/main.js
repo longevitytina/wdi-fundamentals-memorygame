@@ -57,6 +57,10 @@ let cards = [
 cardsInPlay = [];
 var score = 0;
 var score_div =  document.getElementById("scorePanel");
+var scoreBoard_div = document.querySelector(".score-board");
+var player1Score_span = document.getElementById("player-1-score");
+var player2Score_span = document.getElementById("player-2-score");
+
 
 var cardBack = 'images/back.png'; 
 shuffle(cards);

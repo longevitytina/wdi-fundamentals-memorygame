@@ -136,7 +136,6 @@ footer {
 }
 
 .badge{
-  background: red;
   color: white;
   font-size: 14px;
   font-family: 'Asap', sans-serif;
@@ -153,4 +152,8 @@ footer {
   display: block;
   float: right;
   color: #0D2C40;
+}
+
+.active {
+  background: red;
 }

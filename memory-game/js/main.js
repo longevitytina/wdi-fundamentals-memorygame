@@ -130,6 +130,10 @@ function init(){
     document.getElementById('scorePanel').textContent = '0';
     cardsInPlay.length = 0;
     createBoard();
+    document.querySelector('#player-1-label').classList.remove('active');
+    document.querySelector('#player-2-label').classList.remove('active');
+    document.querySelector('#player-1-label').classList.add('active');
+    
 }
 
 function createBoard(){

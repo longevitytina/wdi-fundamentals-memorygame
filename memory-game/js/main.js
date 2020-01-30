@@ -32,7 +32,7 @@ let cards = [
     {
         rank: "ace",
         suit: "hearts",
-        cardImage: ""
+        cardImage: "images/ace-heartsy.png"
     },
     {
         rank: "ace",
@@ -56,11 +56,10 @@ let cards = [
 ];
 cardsInPlay = [];
 var score = 0;
-var score_div =  document.getElementById("scorePanel");
-var scoreBoard_div = document.querySelector(".score-board");
-var player1Score_span = document.getElementById("player-1-score");
-var player2Score_span = document.getElementById("player-2-score");
-
+var player1Score = 0;
+var player2Score = 0
+var gamePlaying;
+var score_div = document.getElementById('scorePanel')
 
 var cardBack = 'images/back.png'; 
 shuffle(cards);
@@ -95,9 +94,12 @@ function checkForMatch(){
         var penultimateCard = document.querySelector(`[data-id="${penultimate}"]`)
         lastCard.setAttribute('src', cardBack);
         penultimateCard.setAttribute('src', cardBack);
+        cardsInPlay.pop(lastCard);
+        cardsInPlay.pop(penultimateCard);
         console.log("no match");
     }
 };
+
 function incrementScore(){
     score += 1;
     score_div.innerHTML = score;
@@ -117,7 +119,22 @@ function flipCard(){
     }
 };
 
+document.querySelector('.btn-new').addEventListener('click', init);
+
+function init(){
+    const gameBoard = document.getElementById('game-board')
+    while (gameBoard.firstChild){
+        gameBoard.removeChild(gameBoard.firstChild);
+    }
+    score = 0;
+    document.getElementById('scorePanel').textContent = '0';
+    cardsInPlay.length = 0;
+    createBoard();
+}
+
 function createBoard(){
+    shuffle(cards);
+    
     for(let i = 0; i < cards.length; i++){
         var cardElement = document.createElement('img');
         cardElement.setAttribute('src', cardBack);
@@ -144,3 +161,13 @@ createBoard();
 //animations for cards turning over
 //timer
 //attempts score
+
+//new game button:
+//reset scores, flip cards back over, and  shuffle cards.
+
+//multiplayer: game begins with player 1. name is highlighted
+//player attempts to find match, two possibilities:
+//finds a match, gains a point, goes again, logic repeats.
+//if cards don't match, cards flip back over, second player goes
+//second player name is highlighted and turn starts
+//active player

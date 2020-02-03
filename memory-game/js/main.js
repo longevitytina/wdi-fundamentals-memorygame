@@ -49,18 +49,21 @@ let cards = [
         suit: "spades",
         cardImage: "images/ace-spades.png"
     }
-
-
-
-
 ];
 cardsInPlay = [];
 var score = 0;
-var player1Score = 0;
-var player2Score = 0
-var gamePlaying;
-var score_div = document.getElementById('scorePanel')
-
+var playerOne = {
+    name: 'Player 1',
+    score: 0,
+    scoreDisplay: document.querySelector('#player-1-score'),
+};
+var playerTwo = {
+    name: 'Player 2',
+    score: 0,
+    scoreDisplay: document.querySelector('#player-2-score'),
+};
+var activePlayer = playerOne;
+var score_div = document.getElementById('scorePanel');
 var cardBack = 'images/back.png'; 
 shuffle(cards);
 
@@ -97,12 +100,13 @@ function checkForMatch(){
         cardsInPlay.pop(lastCard);
         cardsInPlay.pop(penultimateCard);
         console.log("no match");
+        nextPlayer();
     }
 };
 
 function incrementScore(){
-    score += 1;
-    score_div.innerHTML = score;
+    activePlayer.score++
+    activePlayer.scoreDisplay.innerHTML = activePlayer.score
 }
 
 function flipCard(){
@@ -122,7 +126,8 @@ function flipCard(){
 document.querySelector('.btn-new').addEventListener('click', init);
 
 function init(){
-    const gameBoard = document.getElementById('game-board')
+    const gameBoard = document.getElementById('game-board');
+    activePlayer = playerOne;
     while (gameBoard.firstChild){
         gameBoard.removeChild(gameBoard.firstChild);
     }
@@ -133,7 +138,7 @@ function init(){
     document.querySelector('#player-1-label').classList.remove('active');
     document.querySelector('#player-2-label').classList.remove('active');
     document.querySelector('#player-1-label').classList.add('active');
-    
+
 }
 
 function createBoard(){
@@ -148,7 +153,16 @@ function createBoard(){
     }
 }
 
+function nextPlayer(){
+    if (activePlayer === playerOne){
+        activePlayer = playerTwo
+    } else {
+        activePlayer = playerOne
+    }
 
+    document.querySelector('#player-1-label').classList.toggle('active')
+    document.querySelector('#player-2-label').classList.toggle('active')
+}
 
 createBoard();
 
@@ -175,3 +189,12 @@ createBoard();
 //if cards don't match, cards flip back over, second player goes
 //second player name is highlighted and turn starts
 //active player
+
+//if active player finds match, turn continues and adds 1 point to score
+
+//else next players beomes active if no match is found
+
+//create two variables, playerOne and playerTwo, which points to the span's id:
+//<span id="player-1-score active">0</span>
+//use an if statement to to increment score if player is active, else go to next player
+//problem: player label isn't connected to score display

@@ -63,7 +63,6 @@ var playerTwo = {
     scoreDisplay: document.querySelector('#player-2-score'),
 };
 var activePlayer = playerOne;
-var score_div = document.getElementById('scorePanel');
 var cardBack = 'images/back.png'; 
 shuffle(cards);
 
@@ -79,10 +78,8 @@ function shuffle(array) {
       array[m] = array[i];
       array[i] = t;
     }
-  
     return array;
-  }
-
+  };
 
 function checkForMatch(){
     var lastSelected = cardsInPlay[cardsInPlay.length-1];
@@ -107,7 +104,7 @@ function checkForMatch(){
 function incrementScore(){
     activePlayer.score++
     activePlayer.scoreDisplay.innerHTML = activePlayer.score
-}
+};
 
 function flipCard(){
     var cardId = this.getAttribute('data-id');
@@ -132,14 +129,13 @@ function init(){
         gameBoard.removeChild(gameBoard.firstChild);
     }
     score = 0;
-    document.getElementById('scorePanel').textContent = '0';
     cardsInPlay.length = 0;
     createBoard();
     document.querySelector('#player-1-label').classList.remove('active');
     document.querySelector('#player-2-label').classList.remove('active');
     document.querySelector('#player-1-label').classList.add('active');
 
-}
+};
 
 function createBoard(){
     shuffle(cards);
@@ -149,9 +145,9 @@ function createBoard(){
         cardElement.setAttribute('src', cardBack);
         cardElement.setAttribute('data-id', i);
         document.getElementById('game-board').appendChild(cardElement);
-        cardElement.addEventListener('click', flipCard)
+        cardElement.addEventListener('click', flipCard);
     }
-}
+};
 
 function nextPlayer(){
     if (activePlayer === playerOne){
@@ -162,39 +158,49 @@ function nextPlayer(){
 
     document.querySelector('#player-1-label').classList.toggle('active')
     document.querySelector('#player-2-label').classList.toggle('active')
-}
+};
 
 createBoard();
 
-//when cards are matched, get 1 point accumlated to score panel
-//player clicks second card, if matched get 1 point
-//in checkForMatch() instead of alert(), add 1 point onto score
-//display result..
-//empty variable to store score.
+document.querySelector('.btn-computer').addEventListener('click', computerTurn);
+    // var computer = playerOne;
+    //cards that have been seen but not matched
+    // var cardsFaceDown = [];
+    //if no cards flipped, then flip two cards at random if turn is active
+    // if (activePlayer === computer && cardsInPlay.length === 0){
+        //click two cards and end turn if no match
+        // document.getElementById('data-id').click();
+        // }
 
-//if card has been clicked previously, then do not flip card
-//if card is not flipped, turn over.
-//card is not being flipped over correctly: lag in the second card 
-//add multiple players
+
+function computerTurn(){
+    for(var i = 0; i<2;i++ ){
+        var randomIndex = Math.floor(Math.random()* cards.length);
+        if (cardsInPlay.includes(randomIndex.toString())){
+            i--
+            continue
+        }
+        var randomCard = document.querySelector(`[data-id="${randomIndex}"]`);
+        randomCard.click();
+    }
+};
+
 //animations for cards turning over
 //timer
 //attempts score
 
-//new game button:
-//reset scores, flip cards back over, and  shuffle cards.
-
-//multiplayer: game begins with player 1. name is highlighted
-//player attempts to find match, two possibilities:
-//finds a match, gains a point, goes again, logic repeats.
-//if cards don't match, cards flip back over, second player goes
-//second player name is highlighted and turn starts
-//active player
-
-//if active player finds match, turn continues and adds 1 point to score
-
-//else next players beomes active if no match is found
-
-//create two variables, playerOne and playerTwo, which points to the span's id:
-//<span id="player-1-score active">0</span>
-//use an if statement to to increment score if player is active, else go to next player
-//problem: player label isn't connected to score display
+/**
+ * computer vs human 
+ * btn: pick multiplayer 
+ * or
+ * btn: computer
+ * computer turn
+ * first turn:empty cardArray-two random cards
+ * second turn: depending on third card flipped, decide to flip new card or 
+ * previous card, if
+ * 
+ * how to separate and organize different modes
+ * computer mode - easy, med, hard mode?
+ * multiplayer -current code 
+ * 
+ */
